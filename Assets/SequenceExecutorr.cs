@@ -11,6 +11,11 @@ public class SequenceExecutorr : MonoBehaviour
     {
         foreach (var sequence in sequenceDatas)
         {
+            if (sequence == null)
+            {
+                return;
+            }
+
             sequence.StartSequence(() =>
             {
                 if (IsEndSequenceDatas())

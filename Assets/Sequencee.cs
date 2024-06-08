@@ -17,11 +17,30 @@ public class Sequencee : MonoBehaviour
             EndSequenceData();
             return;
         }
+
         PlaySequenceData(sequenceDatas[currentSequenceDataIndex]);
     }
 
     private void PlaySequenceData(SequenceDataa sequenceData)
     {
+        if (sequenceData == null)
+        {
+#if UNITY_EDITOR
+            Debug.Log("SequenceDataNull");
+            Debug.LogException(new Exception("SequenceDataNull"));
+#endif
+
+            if (IsEndSequnceData())
+            {
+                EndSequenceData();
+            }
+            else
+            {
+                PlaySequenceData(sequenceDatas[currentSequenceDataIndex]);
+            }
+            return;
+        }
+
         sequenceData.PlaySequence(() =>
         {
             if (IsEndSequnceData())
